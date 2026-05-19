@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ReactQueryProvider } from "@/lib/react-query/provider";
+import { MSWProvider } from "@/lib/msw/MSWProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -29,7 +30,9 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-          <ReactQueryProvider>{children}</ReactQueryProvider>
+          <MSWProvider>
+            <ReactQueryProvider>{children}</ReactQueryProvider>
+          </MSWProvider>
         </body>
     </html>
   );
