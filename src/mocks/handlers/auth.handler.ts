@@ -188,4 +188,21 @@ export const authHandlers = [
       data: { user: { id: user.id, email: user.email, name: user.name } },
     });
   }),
+
+  // POST /api/auth/logout
+  http.post('/api/auth/logout', async ({ cookies }) => {
+    await delay(200);
+    const refreshToken = cookies.refreshToken;
+    if (refreshToken) {
+      validRefreshTokens.delete(refreshToken);
+    }
+    return HttpResponse.json(
+      { success: true, message: '로그아웃 성공' },
+      {
+        headers: {
+          'Set-Cookie': 'refreshToken=; Path=/; HttpOnly; Max-Age=0',
+        },
+      }
+    );
+  }),
 ];

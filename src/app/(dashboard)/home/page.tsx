@@ -1,3 +1,5 @@
+import { HomeView } from '@/features/home/components/HomeView';
+
 export default function HomePage() {
-  return <div>Home</div>;
+  return <HomeView />;
 }
